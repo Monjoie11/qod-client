@@ -11,5 +11,35 @@
   tools:showIn="@layout/activity_main">
 
 
+  <EditText
+    android:id="@+id/text_box"
+    android:layout_width="323dp"
+    android:layout_height="60dp"
+    android:hint="Please don't say something stupid"
+    android:inputType="text"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toLeftOf="@id/search_button"
+    app:layout_constraintTop_toTopOf="parent"/>
+
+  <ImageButton
+    android:id="@+id/search_button"
+    android:layout_width="53dp"
+    android:layout_height="59dp"
+    android:src="@drawable/ic_gavel_black_24dp"
+    app:layout_constraintLeft_toRightOf="@id/text_box"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintHorizontal_chainStyle="packed"
+    app:layout_constraintHorizontal_weight="1"/>
+
+  <ListView
+    android:id="@+id/search_result"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/text_box"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

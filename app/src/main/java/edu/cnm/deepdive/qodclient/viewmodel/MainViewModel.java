@@ -10,13 +10,14 @@ import edu.cnm.deepdive.qodclient.service.QodService;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
+import java.util.LinkedList;
 import java.util.List;
 
 public class MainViewModel extends AndroidViewModel {
 
   private MutableLiveData<Quote> random;
   private CompositeDisposable pending = new CompositeDisposable();
-  private  MutableLiveData<List<Quote>> search;
+  private  MutableLiveData<List<Quote>> searchList;
 
   public MainViewModel(@NonNull Application application) {
     super(application);
@@ -33,16 +34,22 @@ public class MainViewModel extends AndroidViewModel {
     return random;
   }
 
-  public LiveData<List<Quote>> getSearchQuote(String string) {
-    if(search == null){
-      search = new MutableLiveData<>();
+  public LiveData<List<Quote>> getSearchQuote(String search) {
+    if(searchList == null){
+      searchList = new MutableLiveData<>();
     }
+    if (search != null) {
       pending.add(
-          QodService.getInstance().search(string).subscribeOn(Schedulers.io())
-              .observeOn(AndroidSchedulers.mainThread()).subscribe((quote) -> search.setValue(quote))
+          QodService.getInstance().search(search).subscribeOn(Schedulers.io())
+              .observeOn(AndroidSchedulers.mainThread())
+              .subscribe((quote) -> searchList.setValue(quote))
       );
-     return search;
-  }
+    }else {
+      searchList.setValue(new LinkedList<>());
+    }
+     return searchList;
+
+
 
 
 }

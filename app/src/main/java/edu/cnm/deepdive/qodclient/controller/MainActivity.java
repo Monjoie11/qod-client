@@ -3,6 +3,9 @@ package edu.cnm.deepdive.qodclient.controller;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.LiveData;
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
   private MainViewModel viewModel;
   private LiveData<Quote> randomQuote;
+  ListView
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +45,22 @@ public class MainActivity extends AppCompatActivity {
               (dialogInterface, i) -> {}).create();
           dialog.show();
     });
+    viewModel.getSearchQuote(null).observe(this, (quotes) -> {
+      ArrayAdapter<Quote> adapter = new ArrayAdapter<>(
+          this, android.R.simple_list_item_1, quotes);
+      searchResult.setad
+      )
+    });
   }
 
   private void setupFab() {
     FloatingActionButton fab = findViewById(R.id.fab);
     fab.setOnClickListener(view -> viewModel.getRandomQuote());
+  }
+
+  private void setupSearchButton(){
+    EditText searchBox = findViewById(R.id.text_box);
+
   }
 
   private void setupToolbar() {
