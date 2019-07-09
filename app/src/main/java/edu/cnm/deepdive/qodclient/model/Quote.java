@@ -19,8 +19,12 @@ public class Quote {
 
   private static final String UNKOWN_SOURCE = "(unkowm)";
 
-
   private List<Source> sources = new LinkedList<>();
+
+  @Override
+  public String toString() {
+    return text;
+  }
 
   public List<Source> getSources() {
     return sources;
